@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "BookingStatus",
+	"type": "object",
+	"description": "Booking status",
+	"properties": {
+		"bookingStatus": {
+			"type": "integer",
+			"description": "Number representing the booking status (100: booking does not exist, 101: no reservation made yet, 102: reserved, 200: all booking steps completed, 999: registered, 899: canceled)",
+			"enum": [100, 101, 102, 200, 999, 899],
+			"required": true
+		}
+	}
+}

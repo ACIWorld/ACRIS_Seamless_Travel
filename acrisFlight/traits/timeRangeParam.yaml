@@ -1,0 +1,8 @@
+#%RAML 1.0
+---
+  
+description: The parameter for a time range
+queryParameters:
+  timeRange:
+    type: integer
+    description: The time range in minutes for querying the list of flights. If parameter exists the pagenation is not used if present as query parameter.

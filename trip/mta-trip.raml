@@ -1,0 +1,131 @@
+#%RAML 1.0
+---
+title: API for Trip
+version: v1
+baseUri: https://{serverName}/{appName}-{version}
+baseUriParameters:
+  serverName:
+    description: the name of the server
+    example: api-dev.munich-airport.de
+  appName:
+    description: the name of the application
+    example: aci-trip
+
+mediaType: application/json
+
+securitySchemes:
+  securedWithApiKey:     !include ../restBase/traits/securedWithApiKey.yaml
+
+types: 
+  CreateTripInfo:        !include model/createTripInfo.schema.json
+  TripInfo:              !include model/tripInfo.schema.json
+  TripList:              !include model/tripList.schema.json
+  CreateTrip:            !include model/tripInfo.schema.json
+  PNR:                   !include model/pnr.schema.json
+  ResponseMsg404:        !include ../restBase/model/responseMsg.schema.json
+
+
+traits:
+  AcceptLanguageHeader:  !include ../restBase/traits/acceptLanguageHeader.yaml
+  UnknownKeyResponse:    !include ../restBase/traits/unknownKeyResponseWithMsg.yaml
+
+securedBy: [ securedWithApiKey ]
+
+/all:
+  get:
+    description: get a all informations (flights, marked service, last visited services, booked service) which are stored for the user
+    is: [AcceptLanguageHeader]
+    responses:
+      200:
+        body:
+          type: TripList
+
+/flight/{tripID}/{flightID}:
+  is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
+  displayName: FlightByID
+  put:
+    description: Add the flight to the list of the trip
+    responses:
+      200:
+        description: flight was added to the trip
+      500:
+        description: the flight was not added to the trip, cause of an error of the subsystem
+  delete:
+    description: remove a flight from the list of the tip
+    responses:
+      200:
+        description: flight was removed from the trip
+      500:
+        description: the flight was not added to the trip, cause of an error of the subsystem
+
+/flightPNR/{tripID}/{flightID}:
+  is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
+  displayName: FlightPNRByID
+  put:
+    description: Add the flight to the list of the trip
+    body:
+      type: PNR
+    responses:
+      200:
+        description: flight was added to the trip
+      500:
+        description: the flight was not added to the trip, cause of an error of the subsystem
+  delete:
+    description: Remove a flight from the list of the tip
+    responses:
+      200:
+        description: flight was removed from the trip
+      500:
+        description: the flight was not added to the trip, cause of an error of the subsystem
+
+
+/service/{tripID}/{source}/{serviceID}:
+  is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
+  displayName: ServiceByID
+  put:
+    description: Add the service to the service list of the trip
+    responses:
+      200:
+        description: Add a service to the list of services in the trip
+      500:
+        description: The service was not added to the list of services in the trip
+  delete:
+    description: Delete the service to the service list of the trip
+    responses:
+      200:
+        description: Remove a service from the list of services in the trip
+      500:
+        description: The service was not removed from to the list of services in the trip
+
+/createTrip:
+  is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
+  put:    
+    description: Create a trip
+    body:
+      type: CreateTripInfo
+    responses:
+        200:
+          description: New trip was created
+          body:
+            type: TripInfo
+        500:
+          description: The trip was not created, cause of an error in the subsystem
+
+/trip:
+  is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
+  put:    
+    description: Update a trip
+    body:
+      type: TripInfo
+    responses:
+        200:
+          description: New trip was created or updated
+  /{tripId}:
+    is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
+    delete:
+      description: Delete the trip 
+      responses:
+        200:
+          description: The trip was deleted
+        500:
+          description: The trip was not deleted, cause of an error in the subsystem

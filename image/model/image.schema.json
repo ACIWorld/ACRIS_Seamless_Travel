@@ -1,0 +1,27 @@
+{
+    "description":"Image file - in different resolutions to address different devices and device types",
+	"title": "Image",
+	"type": "object",
+	"properties": {
+		"low": {
+			"type": "string",
+			"format": "url",
+			"description": "Image in low resolution"
+		},
+		"medium": {
+			"type": "string",
+			"format": "url",
+			"description": "Image in medium resolution"
+		},
+		"high": {
+			"type": "string",
+			"format": "url",
+			"description": "Image in high resolution"
+		},
+		"native": {
+			"type": "string",
+			"format": "url",
+         	"description": "Native resoution of image"
+		}
+	}
+}

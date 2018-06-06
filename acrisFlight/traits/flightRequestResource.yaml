@@ -1,0 +1,20 @@
+#%RAML 1.0
+---
+description: The default resource type for all flight requests
+uriParameters:
+  airport:
+    description: The airport as IATA code
+    example: MUC
+    type: string
+    minLength: 3
+    maxLength: 3
+get:
+  is: [SecuredWithApiKeyResponse, PageingList, TimeRangeParam, TimestampQueryParam: {paramName: startTime, queryDesc: The start time must search in the scheduled and expected arrival time. Default is the current time. }]
+  description:  Returns a list of <<getDesc>> flights ordered by scheduled arrival time
+  responses:
+    200:
+      description: Returns the list of flights which was found
+      body:
+        type: FlightList
+    400:
+      description: One of the parameter values is not valid

@@ -1,0 +1,9 @@
+#%RAML 1.0
+---
+
+description: The HTTP Header for the language with priorities in which the response should be returned.
+headers:
+  Accept-Language:
+    required: true
+    type: string
+    example: nl, fr;q=0.8, en;q=0.7

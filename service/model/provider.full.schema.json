@@ -1,0 +1,42 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ProviderFull",
+	"type": "object",
+	"properties": {
+		"id": {
+			"description": "The unique identifier of the provider",
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"required": true
+		},
+		"name": {
+			"description": "The name of the provider",
+			"type": "string",
+			"required": true
+		},
+		"email": {
+			"description": "The e-mail address of the provider",
+			"type": "string"
+		},
+		"website": {
+			"description": "The website of the provider",
+			"type": "string",
+			"format": "uri"
+		},
+		"phone": {
+			"description": "The phone number of the provider",
+			"type": "string"
+		},
+		"fax": {
+			"description": "The fax number of the provider",
+			"type": "string"
+		},
+		"logo": {
+			"$ref": "../../image/model/image.schema.json"
+		},
+		"contact": {
+			"description": "The contact information of the provider",
+			"$ref": "../../restBase/model/address.schema.json"
+		}
+	}
+}

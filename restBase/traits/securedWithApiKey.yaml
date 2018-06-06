@@ -1,0 +1,10 @@
+#%RAML 1.0
+---
+
+type: x-ApiKeySecurity
+description: All APIs are secured with an API Key. The API key is passed in as HTTP Header, X-apiKey
+describedBy:
+  headers:
+    X-apiKey:
+      required: true
+      type: string

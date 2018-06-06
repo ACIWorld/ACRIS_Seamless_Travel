@@ -1,0 +1,15 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "AirportList",
+	"type": "object",
+	"description": "The list of airports",
+	"properties": {
+		"airports": {
+			"type": "array",
+			"description": "The list of all active airports",
+			"items": {
+				"$ref": "airport.full.schema.json"
+			}
+		}
+	}
+}

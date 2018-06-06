@@ -1,0 +1,75 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "AirportFull",
+	"type": "object",
+	"description": "The airport object in the app",
+	"extends": {
+		"$ref": "airport.short.schema.json"
+	},
+	"properties": {
+		"icaoCode": {
+			"type": "string",
+			"description": "The ICAO Code of the airport",
+			"required": true
+		},
+		"coordinate": {
+			"type": "object",
+			"description": "The coordinates of the airport (WGS84)",
+			"properties": {
+				"longitude": {
+					"type": "number",
+					"required": true
+				},
+				"latitude": {
+					"type": "number",
+					"required": true
+				},
+				"elevation": {
+					"type": "integer",
+					"description": "the elevation of the airport in meters"
+				}
+			}
+		},
+		"geofenceRadius": {
+			"type": "number",
+			"description": "The radius around the coordinate in which the airport lies in meters."
+		},
+		"visitorsAddress": {
+			"description": "The visitor's address of the airport",
+			"$ref": "../../restBase/model/address.schema.json"
+		},
+		"postalAddress": {
+			"description": "The postal address of the airport.",
+			"$ref": "../../restBase/model/address.schema.json"
+		},
+		"airportImageURL": {
+			"$ref": "../../image/model/image.schema.json",
+			"description": "Image of an airport."
+		},
+		"timezone": {
+			"type": "string",
+			"description": "Time zone of the current airport, according to tz database, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+		},
+		"websites": {
+			"description": "Internet addresses of the airport",
+			"type": "array",
+			"items": {
+				"type": "string",
+				"format": "uri",
+				"description": "One web URL of the airport"
+			}
+		},
+		"telephoneNumber": {
+			"type": "string",
+			"description": "The most important telephone number of the airport"
+		},
+		"email": {
+			"type": "string",
+        	"description": "The e-mail address of the airport"
+		},
+		"queueTimes": {
+			"$ref": "airportQueue.schema.json",
+			"description": "Queuing times of an airport."
+		}
+	}
+}

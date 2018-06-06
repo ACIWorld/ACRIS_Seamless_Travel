@@ -1,0 +1,134 @@
+#%RAML 1.0
+---
+title: API for Services
+version: v1
+baseUri: https://{serverName}/{appName}-{version}
+baseUriParameters:
+  serverName:
+    description: the name of the server
+    example: api-dev.munich-airport.de
+  appName:
+    description: the name of the application
+    example: aci-service
+
+mediaType: application/json
+
+securitySchemes:
+  securedWithApiKey:   !include ../restBase/traits/securedWithApiKey.yaml
+
+types:
+  Service:             !include model/service.full.schema.json
+  ServiceList:         !include model/serviceList.schema.json
+  ServiceCategory:     !include model/serviceCategory.full.schema.json
+  ServiceCategoryList: !include model/serviceCategoryList.schema.json
+         
+traits: 
+  UnkownKey:           !include ../restBase/traits/unknownKeyResponse.yaml
+  AcceptLang:          !include ../restBase/traits/acceptLanguageHeader.yaml
+  SearchQuery:
+    queryParameters:
+      searchString:
+        type: string
+        description: The string to search for a arrival
+      length:
+        type: integer
+        description: The length of the returning flightslist
+        default: 50
+      offset:
+        type: integer
+        description: The offset of the returning list.
+        default: 0
+
+/detail/{serviceID}:
+  get:
+    description: |
+      Returns detailed information for a specific service. 
+      The language has to be given as parameter for the selection in the data base.
+    is: [UnkownKey, AcceptLang]
+    responses:
+      200:
+        body:
+          type: Service
+  /{locationId}:
+    get:
+      description: |
+        Returns detailed information for a specific service. 
+        The language has to be given as parameter for the selection in the data base.
+      is: [UnkownKey, AcceptLang]
+      responses:
+        200:
+          body:
+            type: Service
+                
+/search/{airport_code}:
+  get:
+    description: |
+      Returns detailed information as a list for the search. 
+      The language has to be given as parameter for the selection in the data base.
+    is: [AcceptLang, SearchQuery]
+    uriParameters:
+      airport_code:
+        description: Code (IATA or ICAO) of the airport
+        type: string
+        minLength: 3
+        maxLength: 4
+    responses:
+      200:
+        body:
+          type: ServiceList
+          
+/topServices/{airport_code}:
+  get:
+    queryParameters:
+      flightid:
+        description: The Flight id
+        displayName: flightId
+        type: integer
+        example: 7890123
+        required: false 
+    description: |
+      Returns a list of available top services for the given airport and user identified by oauth-token.
+      The top services can differ for different users and is context based.
+      The list items have to be ordered. There should be only maximum 4 top services.
+      The language has to be given as parameter for the selection in the database.
+    is: [AcceptLang]
+    uriParameters:
+      airport_code:
+        description: Code (IATA or ICAO) of the airport
+        type: string
+        minLength: 3
+        maxLength: 4
+    responses:
+      200:
+        body:
+          type: ServiceList
+          
+/serviceCategories/{airport_code}:
+  get:        
+    description: |
+      Returns a list of available service categories for a specific airport.
+      The language has to be given as parameter for the selection in the data base.
+    is: [AcceptLang]
+    uriParameters:
+      airport_code:
+        description: Code (IATA or ICAO) of the airport
+        type: string
+        minLength: 3
+        maxLength: 4
+    responses:
+      200:
+        body:
+          type: ServiceCategoryList
+      204:
+        description: no content for language found
+          
+/category/{categoryId}:
+  get:        
+    description: |
+      Returns a list of available service categories for a specific airport.
+      The language has to be given as parameter for the selection in the data base.
+    is: [UnkownKey,AcceptLang]
+    responses:
+      200:
+        body:
+          type: ServiceCategory

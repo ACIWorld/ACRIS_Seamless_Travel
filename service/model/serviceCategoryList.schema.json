@@ -1,0 +1,15 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceCategoryList",
+	"description": "The list of elements in the category",
+	"type": "object",
+	"properties": {
+		"serviceCategoryParents": {
+			"type": "array",
+			"description": "The list of all service categories. ",
+			"items": {
+				"$ref": "serviceCategory.short.schema.json"
+			}
+		}
+	}
+}

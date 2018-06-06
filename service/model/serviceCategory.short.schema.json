@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceCategoryShort",
+	"type": "object",
+	"properties": {
+		"id": {
+			"description": "The unique identifier of the service category",
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"required": true
+		},
+		"parentCategoryID": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"required": true,
+			"description": "The ID of the parent category"
+		},
+		"title": {
+			"description": "The title of the service category. The title is shown in the category list.",
+			"type": "string",
+			"required": true
+		}
+	}
+}

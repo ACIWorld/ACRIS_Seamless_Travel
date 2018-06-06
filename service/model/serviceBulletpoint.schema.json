@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceBulletpoint",
+	"type": "object",
+	"properties": {
+		"title": {
+			"description": "The title of the bulletpoints. This is the first header element in the pageview.",
+			"type": "string",
+			"required": true
+		},
+		"order": {
+			"description": "The order number in the complete list of key features.",
+			"type": "integer",
+			"required": true
+		},
+		"headerText": {
+			"description": "The sub title of the bulletpoints. This text is shown after the title. ",
+			"type": "string"
+		},
+		"footerText": {
+			"description": "The footer text of the bulletpoints. This text is shown after the enumeration of the bulletpoints.",
+			"type": "string"
+		},
+		"elements": {
+			"description": "The bulletpoint. Each element of the list has to be specified as one bulletpoint (element). ",
+			"type": "array",
+			"required": true,
+			"items": {
+				"type": "string"
+			}
+		}
+	}
+}

@@ -1,0 +1,6 @@
+#%RAML 1.0
+---
+  
+description: response for an unauthorized user
+responses:
+  401:

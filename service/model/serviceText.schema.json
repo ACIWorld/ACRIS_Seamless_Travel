@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceText",
+	"type": "object",
+	"properties": {
+		"title": {
+			"description": "The title of the free text element. This is the first header element of the container.",
+			"type": "string",
+			"required": true
+		},
+		"order": {
+			"description": "The order number in the complete list of key features.",
+			"type": "integer",
+			"required": true
+		},
+		"text": {
+			"description": "The text of the free text element. This text is shown after the title and is not formated. ",
+			"type": "string"
+		}
+	}
+}

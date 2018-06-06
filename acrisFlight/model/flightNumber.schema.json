@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "FlightNumber",
+	"description": "The status representation of a flight",
+	"type": "object",
+	"properties": {
+		"airlineCode": {
+			"type": "string",
+			"description": "The airlineCode-part of the flight-number (e.g. EI). This is the \"flightNumberCode\" from the operating airline.",
+			"required": true
+		},
+		"trackNumber": {
+			"type": "string",
+			"description": "The tracknumber-part of the flight-number (e.g. 123)",
+			"required": true
+		},
+		"suffix": {
+			"type": "string",
+			"description": "The optional last character of the flight-number."
+		}
+	}
+}

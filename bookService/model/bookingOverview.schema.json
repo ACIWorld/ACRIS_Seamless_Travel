@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "BookingOverview",
+	"type": "object",
+	"description": "booking overview data",
+	"properties": {
+		"serviceHeader": {
+			"$ref": "serviceHeader.schema.json",
+			"required": true
+		},
+		"serviceForm": {
+			"$ref": "serviceForm.schema.json",
+			"required": true
+		},
+		"bookingFee": {
+			"$ref": "bookingFee.schema.json",
+			"required": false
+		},
+		"bookingStatus": {
+			"$ref": "bookingStatus.schema.json",
+			"required": true
+		}
+	}
+}

@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceForm",
+	"type": "object",
+	"description": "Complete booking data",
+	"properties": {
+		"id": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"description": "Unique id of the element",
+			"required": true
+		},
+		"serviceFormPages": {
+			"type": "array",
+			"items": {
+				"serviceFormPage": {
+					"$ref": "serviceFormPage.schema.json"
+				}
+			},
+			"required": true
+		}
+	}
+}

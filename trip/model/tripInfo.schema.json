@@ -1,0 +1,17 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "TripInfo",
+	"type": "object",
+	"description": "The object to update a trip",
+	"extends": {
+		"$ref": "createTripInfo.schema.json"
+	},
+	"properties": {
+		"tripID": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"description": "The ID of the trip.",
+			"required": true
+		}
+	}
+}

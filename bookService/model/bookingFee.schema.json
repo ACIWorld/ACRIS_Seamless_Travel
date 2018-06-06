@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "BookingFee",
+	"type": "object",
+    "description": "Booking fee data, including tax information",
+	"properties": {
+		"preTaxFee": {
+			"type": "number",
+			"description": "Pre-tax fee",
+			"required": true
+		},
+		"taxRate": {
+			"type": "number",
+			"description": "Tax rate",
+			"required": true
+		},
+		"currency": {
+			"type": "string",
+			"description": "Currency of transaction (ISO-4217 three-letter format, e.g. USD, EUR, CNY)",
+			"required": true
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "BookingDataRequest",
+	"type": "object",
+    "description": "Booking request data",
+	"properties": {
+		"serviceHeader": {
+			"$ref": "serviceHeader.schema.json",
+			"required": true
+		},
+		"serviceFormPage": {
+			"$ref": "serviceFormPage.schema.json",
+			"required": false
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"description": "Definition of barcodes to be shown to the user",
+	"title": "Barcode",
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": ["EAN13", "PDF417", "AZTEK", "QR"]
+		},
+		"payload": {
+			"type": "string",
+			"description": "The content to be converted into a barcode"
+		}
+	}
+}

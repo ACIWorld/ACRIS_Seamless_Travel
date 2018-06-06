@@ -1,0 +1,6 @@
+#%RAML 1.0
+---
+  
+description: response for a unknown key
+responses:
+  404:

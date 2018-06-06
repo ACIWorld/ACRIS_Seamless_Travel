@@ -1,0 +1,88 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "AirlineFull",
+	"id": "airlineFull",
+	"type": "object",
+	"description": "The airline's full information object",
+	"extends": {
+		"$ref": "airline.short.schema.json"
+	},
+	"properties": {
+		"checkIn": {
+			"description": "The check-in area of the airline",
+			"type": "string"
+		},
+		"icaoCode": {
+			"type": "string",
+			"description": "The ICAO Code of the airline",
+			"required": true
+		},
+		"terminal": {
+			"type": "string",
+			"description": "The airlines main terminal as comma seperated list"
+		},
+		"airlineName": {
+			"type": "string",
+			"required": true,
+			"descrption": "The full name of the airline"
+		},
+		"logo": {
+			"description": "The image of the airline's logo",
+			"$ref": "../../image/model/image.schema.json"
+		},
+		"checkInTime": {
+			"description": "The check-in times of the airline",
+			"type": "string"
+		},
+		"lateNightArea": {
+			"description": "The late night check-in areas of the airline",
+			"type": "string"
+		},
+		"lateNightTimes": {
+			"description": "The late night check-in times of the airline",
+			"type": "string"
+		},
+		"serviceTime": {
+			"description": "The service center opening times of the airline",
+			"type": "string"
+		},
+		"handlingAgent": {
+			"description": "The handling agent of the airline",
+			"type": "string"
+		},
+		"info": {
+            "description": "Some further information.",
+			"type": "string"
+		},
+		"websites": {
+			"description": "The internet addresses of the airline",
+			"type": "array",
+			"items": {
+				"type": "string",
+				"format": "uri",
+				"description": "The web url of the airline"
+			}
+		},
+		"telephoneNumber": {
+			"type": "string",
+			"description": "The important telephone number of the airline"
+		},
+		"faxNumber": {
+			"type": "string",
+			"description": "The fax number of the airline"
+		},
+		"email": {
+			"type": "string",
+            "description": "The e-mail address of the airline"
+		},
+		"onlineCheckInURL": {
+			"description": "The URL of the online checkin platform",
+			"type": "string",
+			"format": "uri"
+		},
+		"contact": {
+			"description": "The contact address of the airline",
+			"$ref": "../../restBase/model/address.schema.json"
+		}
+	}
+}

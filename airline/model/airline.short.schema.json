@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "AirlineShort",
+	"type": "object",
+	"description": "The short airline Object",
+	"properties": {
+		"airlineID": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"description": "The ID of the airline",
+			"required": true
+		},
+		"iataCode": {
+			"type": "string",
+			"description": "The IATA Code of the airline",
+			"required": true
+		},
+		"flightNumberCode": {
+			"type": "string",
+        	"description": "The flight number code (code used towards the passenger, could be IATA or ICAO format) of the airline. Every flight operated by this airline has this code as \"airlineCode\" in its flightNumber.",
+			"required": true
+		}
+	}
+}

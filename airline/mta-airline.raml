@@ -1,0 +1,46 @@
+#%RAML 1.0
+---
+title: API for Airlines
+version: v1
+protocols: [ HTTPS ]
+
+baseUri: https://{serverName}/{appName}-{version}
+baseUriParameters:
+  serverName:
+    description: the name of the server
+    example: api-dev.munich-airport.de
+  appName:
+    description: the name of the application
+    example: aci-airline
+
+securitySchemes:
+  securedWithApiKey: !include ../restBase/traits/securedWithApiKey.yaml
+    
+mediaType: application/json
+
+securedBy: [securedWithApiKey]
+
+types:
+  Airline:           !include model/airline.full.schema.json
+  AirlineList:       !include model/airlineList.schema.json
+
+traits:
+  AcceptLang:        !include ../restBase/traits/acceptLanguageHeader.yaml
+
+/detail/{airline_id}:
+  is: [AcceptLang]
+  get:
+    description: Returns detailed information for a specific airline
+    responses:
+      200:
+        body:
+          type: Airline
+
+/airlines:
+  is: [AcceptLang]
+  get:
+    description: Returns a list of all available airlines for an specific airport. This usually is a list of all the airlines that offer services (operating flights as well as code shares) at the requested source.
+    responses:
+      200:
+        body:
+          type: AirlineList

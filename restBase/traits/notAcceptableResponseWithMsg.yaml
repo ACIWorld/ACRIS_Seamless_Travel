@@ -1,0 +1,8 @@
+#%RAML 1.0
+---
+  
+description: response for a rejected cancelation request with a msg in the body
+responses:
+  406:
+    body:
+      type: <<typeName>>

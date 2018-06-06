@@ -1,0 +1,27 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceShort",
+	"type": "object",
+	"properties": {
+		"serviceId": {
+			"description": "The unique identifier of the service",
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"required": true
+		},
+		"airportId": {
+			"description": "The unique identifier of the airport the service belongs to",
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"required": true
+		},
+		"locations": {
+			"description": "The different points of interest of the service.",
+			"type": "array",
+			"items": {
+				"description": "The location of the POI",
+				"$ref": "location.full.schema.json"
+			}
+		}
+	}
+}

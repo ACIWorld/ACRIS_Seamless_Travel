@@ -1,0 +1,49 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceTable",
+	"type": "object",
+	"properties": {
+		"title": {
+			"description": "The title of the table for the service features. This is the first header element of this con.",
+			"type": "string",
+			"required": true
+		},
+		"order": {
+			"description": "The order number in the complete list of key features.",
+			"type": "integer",
+			"required": true
+		},
+		"headerText": {
+			"description": "The sub title of the table for the service features. This text is shown after the title. ",
+			"type": "string"
+		},
+		"footerText": {
+			"description": "The footer text of the table for the service features. This text is shown after the table view.",
+			"type": "string"
+		},
+		"position": {
+			"description": "The position of the table in the page view. This can be used for the design  of the page view. If no postion is specified the order conforms the returned list order.",
+			"type": "string"
+		},
+		"rows": {
+			"description": "The rows of the table. The table supports only 2 column values. The rows will be in the order of the list.",
+			"type": "array",
+			"required": true,
+			"items": {
+				"type": "object",
+				"properties": {
+					"column1": {
+						"description": "The left item (first columng) of the table. Its allowed to put everything here like a date or a header. The text will not be formated and has to be in the correct format.",
+						"type": "string",
+						"required": true
+					},
+					"column2": {
+						"description": "The right item (second column) of the table. Its allowed to put everything here like a date or a header. The text will not be formated and has to be in the correct format.",
+						"type": "string",
+						"required": true
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,72 @@
+#%RAML 1.0
+---
+title: Booking a Service
+version: v1
+baseUri: https://{serverName}/{appName}-{version}
+baseUriParameters:
+  serverName:
+    description: the name of the server
+    example: api-dev.munich-airport.de
+  appName:
+    description: the name of the application
+    example: serviceBooking
+
+securitySchemes:
+  securedWithApiKey:         !include ../restBase/traits/securedWithApiKey.yaml
+
+mediaType: application/json
+
+types:
+  BookingDataResponse:       !include model/bookingDataResponse.schema.json
+  BookingDataRequest:        !include model/bookingDataRequest.schema.json
+  ServiceBookingDataRequest: !include model/serviceBookingDataRequest.schema.json
+  BookingOverview:           !include model/bookingOverview.schema.json
+  ResponseMsgError:          !include ../restBase/model/responseMsg.schema.json
+      
+traits:
+  AcceptLanguageHeader:      !include ../restBase/traits/acceptLanguageHeader.yaml
+  UnknownKeyResponse:        !include ../restBase/traits/unknownKeyResponseWithMsg.yaml
+  UnauthorizedUserResponse:  !include ../restBase/traits/unauthorizedUserResponse.yaml
+ 
+securedBy: [securedWithApiKey]  
+
+/bookingElements:
+  is: [AcceptLanguageHeader, UnknownKeyResponse: {typeName: ResponseMsgError}, UnauthorizedUserResponse]
+  post:
+    description: Fetches the next booking data by posting the previous elements (if available)
+    body:
+      type: BookingDataRequest
+    responses:
+      200:
+        body:
+          type: BookingDataResponse
+
+/serviceBooking/{bookingid}:
+  is: [AcceptLanguageHeader, UnknownKeyResponse: {typeName: ResponseMsgError}, UnauthorizedUserResponse]
+  put:
+    description: Register a certain booking request (i.e. complete the booking process)
+    body:
+      type: ServiceBookingDataRequest
+    responses:
+      200:
+        body:
+          type: BookingDataResponse
+
+  delete:
+    description: Cancel a certain booking request
+    responses:
+      200:
+        body:
+          type: BookingDataResponse
+  post:
+    description: make a change to a certain booking request
+    responses:
+      200:
+        body:
+          type: BookingDataResponse
+  get:
+    description: Get the booking status
+    responses:
+      200:
+        body:
+          type: BookingDataResponse

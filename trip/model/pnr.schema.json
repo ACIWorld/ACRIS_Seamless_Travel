@@ -1,0 +1,12 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "PNR",
+	"type": "object",
+	"properties": {
+		"pnr": {
+			"type": "string",
+			"description": "The Passenger Name Record string",
+			"required": true
+		}
+	}
+}

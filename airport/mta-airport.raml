@@ -1,0 +1,96 @@
+#%RAML 1.0
+---
+title: API for Airport
+version: v1
+protocols: [ HTTPS ]
+
+baseUri: https://{serverName}/{appName}-{version}
+baseUriParameters:
+  serverName:
+    description: the name of the server
+    example: api-dev.munich-airport.de
+  appName:
+    description: the name of the application
+    example: aci-airport
+
+securitySchemes:
+  securedWithApiKey:   !include ../restBase/traits/securedWithApiKey.yaml
+
+mediaType: application/json
+
+types: 
+  Airport:             !include model/airport.full.schema.json
+  AirportList:         !include model/airportList.schema.json
+  AirportInfo:         !include model/airportInfo.schema.json
+  AirportInfoList:     !include model/airportInfoList.schema.json
+  ResponseMsg404:      !include ../restBase/model/responseMsg.schema.json
+
+traits:
+  TimestampQueryParam: !include ../restBase/traits/timestampQueryParam.yaml
+  AcceptLang:          !include ../restBase/traits/acceptLanguageHeader.yaml
+  UnknownKeyResponse:  !include ../restBase/traits/unknownKeyResponseWithMsg.yaml
+
+securedBy: [securedWithApiKey]
+
+/detail/{airportID}/:
+  is: [AcceptLang]
+  description: GET returns detailed information about a specific airport  
+  get:
+    description: Returns detailed information about a specific airport
+    responses:
+      200:
+        body:
+          type: Airport
+          
+/detail/iata/{iataCode}/:
+  is: [AcceptLang]
+  description: GET returns detailed information of an active airport for the specified IATA code
+  get:
+    description: Returns detailed information of an active airport for the specified IATA code
+    responses:
+      200:
+        body:
+          type: Airport
+          
+/detail/icao/{icaoCode}/:
+  is: [AcceptLang]
+  description: GET returns detailed information of an active airport for the specified ICAO code
+  get:
+    description: Returns detailed information of an active airport for the specified ICAO code
+    responses:
+      200:
+        body:
+          type: Airport
+          
+/airports:
+  is: [AcceptLang]
+  description: GET returns all active airports
+  get:
+    description: Returns all active airports
+    responses:
+      200:
+        body:
+          type: AirportList
+          
+/airportInfo/{airportInfoId}:
+  displayName: airportInfo
+  is: [AcceptLang,  UnknownKeyResponse: {typeName: ResponseMsg404}]
+  description: GET returns specified airport's information
+  get:
+    description: Returns specified airport's information
+    responses:
+      200:
+        body:
+          type: AirportInfo
+          
+/airportInfos/{airportId}:
+  displayName: airportInfos
+  is: [AcceptLang,  UnknownKeyResponse: {typeName: ResponseMsg404}]
+  description: GET returns all information about the specified airport
+  get:
+    description: Returns all information about the specified airport
+    responses:
+      200:
+        body:
+          type: AirportInfoList
+  

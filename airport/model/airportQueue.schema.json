@@ -1,0 +1,70 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "AirportQueue",
+	"type": "object",
+	"description": "The waiting queue object",
+	"properties": {
+		"current": {
+			"type": "array",
+			"description": "This array describes the current situation at airport queues",
+			"items": {
+				"type": "object",
+				"properties": {
+					"queueId": {
+						"type": "string",
+						"description": "Unique ID of queue at your airport"
+					},
+					"queueName": {
+						"type": "string",
+						"description": "Name of the queue, e.g. Security Check at Terminal 2"
+					},
+					"projectedWaitTime": {
+						"type": "number",
+						"description": "Average waiting time in seconds at the given queue."
+					},
+					"projectedMinWaitTime": {
+						"type": "number",
+						"description": "Minimum waiting time in seconds at the given queue."
+					},
+					"projectedMaxWaitTime": {
+						"type": "number",
+						"description": "Maximum waiting time in seconds at the given queue."
+					},
+					"time": {
+						"type": "string",
+						"description": "Timestamp of the delivered current waiting times situation. Format ISO-8601 is used including time zone."
+					}
+				}
+			}
+		},
+		"forecast": {
+			"type": "array",
+			"description": "This array gives an estimation / forecast for the waiting time at airport queues at specific times (e.g. every 15 min for the next 4 hours, every 1 hr for the next day)",
+			"items": {
+				"type": "object",
+				"properties": {
+					"queueId": {
+						"type": "string",
+						"description": "Unique ID of queue at your airport"
+					},
+					"queueName": {
+						"type": "string",
+						"description": "Name of the queue, e.g. Security Check at Terminal 2"
+					},
+					"projectedWaitTime": {
+						"type": "number",
+						"description": "Average estimated/forecasted (based on historical data and flight plan information) waiting time in seconds at the given queue."
+					},
+					"confidence": {
+						"type": "number",
+						"description": "How accurate is the given projection? This percentage increases based on the data quality and quantity."
+					},
+					"time": {
+						"type": "string",
+						"description": "Time of projection for waiting times. Format ISO-8601 is used including time zone."
+					}
+				}
+			}
+		}
+	}
+}

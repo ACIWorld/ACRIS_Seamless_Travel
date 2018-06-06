@@ -1,0 +1,63 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "Trip",
+	"type": "object",
+	"description": "The Trip Object",
+	"extends": {
+		"$ref": "tripInfo.schema.json"
+	},
+	"properties": {
+		"flights": {
+			"type": "array",
+			"description": "The list of all flights contained in a trip.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"flightID": {
+						"type": "object",
+						"javaType": "java.lang.Long",
+						"description": "The ID of the trip",
+						"required": true
+					},
+					"pnr": {
+						"type": "string",
+						"description": "The Passenger Name Record of the trip",
+						"required": false
+					}
+				}
+			}
+		},
+		"services": {
+			"type": "array",
+			"description": "The list of all services contained in a trip.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"source": {
+						"type": "object",
+						"javaType": "java.lang.Long",
+						"description": "Unique identifier of a booking's source, e.g. other participating airport",
+						"required": true
+					},
+					"serviceID": {
+						"type": "object",
+						"javaType": "java.lang.Long",
+						"description": "The ID of the service",
+						"required": true
+					},
+					"bookingID": {
+						"type": "object",
+						"javaType": "java.lang.Long",
+						"description": "The ID of the booking, if a booking exists"
+					}
+				}
+			}
+		},
+		"lastUpdate": {
+			"type": "string",
+ 			"format": "date-time",
+ 			"description": "Date and time expressed in UTC. This timestamp indicates the last time any data of this trip was updated.",
+ 			"required": false
+ 		}
+	}
+}

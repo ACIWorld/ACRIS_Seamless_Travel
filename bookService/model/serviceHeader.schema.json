@@ -1,0 +1,46 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceHeader",
+	"type": "object",
+	"description": "Meta data for the booking process",
+	"properties": {
+		"serviceID": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"description": "Sequential number of the service",
+			"required": true
+		},
+		"description": {
+			"type": "string",
+			"description": "Description of the service",
+			"required": false
+		},
+		"bookingID": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"description": "Unique ID of the booking action",
+			"required": false
+		},
+		"extBookingID": {
+			"type": "string",
+			"description": "Booking ID of the Service Provider (external reference)",
+			"required": false
+		},
+		"bookingStatus": {
+			"$ref": "bookingStatus.schema.json",
+			"description": "Status of the booking process",
+			"required": false
+		},
+		"currentWizardStep": {
+			"type": "integer",
+			"description": "Current step in the booking process",
+			"required": false
+		},
+		"paymentURL": {
+			"type": "string",
+			"format": "uri",
+			"description": "The URL to the payment provider, only available when bookingStatus is ready for payment",
+			"required": false
+		}
+	}
+}

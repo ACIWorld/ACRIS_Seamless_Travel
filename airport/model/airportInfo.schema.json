@@ -1,0 +1,51 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "AirportInfo",
+	"type": "object",
+    "description": "The airport information object",
+	"properties": {
+		"infoId": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+         	"description": "The ID of the info",
+			"required": true
+		},
+		"valid_from": {
+			"description": "The begin date of the validity of the security infos",
+			"type": "string",
+			"format": "date-time"
+		},
+		"valid_to": {
+			"description": "The end date of the validity of the security infos",
+			"type": "string",
+			"format": "date-time"
+		},
+		"created": {
+			"description": "The creation timestamp of the security infos",
+			"type": "string",
+			"format": "date-time"
+		},
+		"title": {
+			"description": "The title of one security info",
+			"type": "string"
+		},
+		"infoType": {
+			"type": "string",
+			"description": "The level of the security info",
+			"enum": ["MESSAGE", "INFO", "WARNING", "EMERGENCY"]
+		},
+		"message": {
+			"description": "The text of one security info",
+			"type": "string"
+		},
+		"urls": {
+			"type": "array",
+			"description": "Array of links to external information",
+			"items": {
+				"description": "The link to a related page for one security info",
+				"type": "string",
+				"format": "uri"
+			}
+		}
+	}
+}

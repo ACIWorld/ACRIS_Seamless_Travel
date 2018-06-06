@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceCategoryFull",
+	"type": "object",
+	"extends": {
+		"$ref": "serviceCategory.short.schema.json"
+	},
+	"properties": {
+		"categoryType": {
+			"type": "string",
+			"description": "Type of the category (BASECATEGORY: root, SUBCATEGORY: level below root, SERVICELIST: list of services, SERVICEPAGEVIEW: page of services)",
+			"enum": ["BASECATEGORY", "SUBCATEGORY", "SERVICELIST", "SERVICEPAGEVIEW"]
+		},
+		"serviceList": {
+			"description": "The list of elements in the category",
+			"$ref": "serviceList.schema.json"
+		},
+		"categoryList": {
+			"description": "The list of elements in the category",
+			"$ref": "serviceCategoryList.schema.json"
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceList",
+	"description": "The list of elements in the category",
+	"type": "object",
+	"required": true,
+	"properties": {
+		"services": {
+			"type": "array",
+			"required": false,
+			"items": {
+				"$ref": "service.full.schema.json"
+			}
+		}
+	}
+}

@@ -1,0 +1,8 @@
+#%RAML 1.0
+---
+  
+description: the user agent of the browser
+headers:
+  User-Agent:
+    description:  the user agent of the browser
+    type: string

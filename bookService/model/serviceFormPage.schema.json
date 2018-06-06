@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceFormPage",
+	"type": "object",
+	"description": "One page of the booking data",
+	"properties": {
+		"id": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"description": "Unique id of the element",
+			"required": true
+		},
+		"title": {
+			"type": "string",
+			"description": "The title of the booking page",
+			"required": true
+		},
+		"wizardStep": {
+			"type": "integer",
+			"description": "Current wizard step (i.e. page number)",
+			"required": true
+		},
+		"serviceFormElements": {
+			"type": "array",
+			"items": {
+				"$ref": "serviceFormElement.schema.json"
+			},
+			"required": true
+		}
+	}
+}

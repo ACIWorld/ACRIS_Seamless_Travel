@@ -1,0 +1,8 @@
+#%RAML 1.0
+---
+  
+description: response for a unknown key with a msg in the body
+responses:
+  404:
+    body:
+      type: <<typeName>>

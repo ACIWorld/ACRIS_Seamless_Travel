@@ -1,0 +1,29 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceBookingDataRequest",
+	"type": "object",
+	"extends": {
+		"$ref": "bookingDataRequest.schema.json"
+	},
+	"description": "The service booking request data, with data in key-value form defined by and received from your selected payment provider",
+	"properties": {
+		"dataPayment": {
+			"type": "array",
+			"items": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "The name of the data from payment provider",
+						"required": true
+					},
+					"value": {
+						"type": "string",
+						"description": "The value of the data from payment provider",
+						"required": true
+					}
+				}
+			},
+			"required": false
+		}
+	}
+}

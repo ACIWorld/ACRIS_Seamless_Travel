@@ -1,0 +1,11 @@
+#%RAML 1.0
+---
+  
+description: a parameter for a timestamp
+queryParameters:
+  <<paramName>>:
+    description: |
+      A query parameter in iso time format.
+      <<queryDesc>>
+    type: string
+    example: 2012-04-23T18:25:43.511Z

@@ -1,0 +1,42 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "SpecialShort",
+	"type": "object",
+	"properties": {
+		"id": {
+			"description": "The unique identifier of the special",
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"required": true
+		},
+		"name": {
+			"description": "The title of the special",
+			"type": "string",
+			"required": true
+		},
+		"description": {
+			"description": "The description of the special",
+			"type": "string"
+		},
+		"numberOfAvailable": {
+			"description": "The number of available coupons for the offer",
+			"type": "number"
+		},
+		"image": {
+			"description": "Several pictures for the special",
+			"$ref": "../../image/model/image.schema.json"
+		},
+		"begin": {
+			"description": "The begin date for the special",
+			"type": "date"
+		},
+		"end": {
+			"description": "The end date for the special",
+			"type": "date"
+		},
+		"coupon": {
+			"description": "The coupon of the spcial",
+			"type": "string"
+		}
+	}
+}

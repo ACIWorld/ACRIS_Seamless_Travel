@@ -1,0 +1,97 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ServiceElement",
+	"type": "object",
+    "description": "Booking data for a booking element",
+	"properties": {
+		"id": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"description": "Unique id of the element",
+			"required": true
+		},
+		"elementType": {
+			"type": "string",
+			"enum": [
+				"text",
+				"textbox",
+				"number",
+				"date",
+				"time",
+				"selectList",
+				"checkbox",
+				"image",
+				"telephone"
+			],
+			"description": "Type of the element",
+			"required": false
+		},
+		"valueDefinition": {
+			"type": "string",
+			"description": "Definition of the element. Format: [Description; Supplement] Supplement is only used for the selectList and contains a comma separated list of list entries",
+			"required": false
+		},
+		"value": {
+			"type": "string",
+			"description": "Field input from the customer",
+			"required": false
+		},
+		"descriptionText": {
+			"type": "string",
+			"description": "Description text which explains the expected input to the customer",
+			"required": false
+		},
+		"editable": {
+			"type": "boolean",
+			"description": "Defines whether the field is editable or not",
+			"required": false
+		},
+		"contentCategory": {
+			"type": "string",
+			"enum": [
+				"gender",
+				"firstName",
+				"familyName",
+				"fullName",
+				"street",
+				"zip",
+				"city",
+				"country",
+				"birthday",
+				"email",
+				"tel",
+				"date",
+				"time",
+				"airline",
+				"flightNr"
+			],
+			"description": "Category for the enrichment with user/session specific values (e.g. firstName, FamilyName, fullName, street, ...)",
+			"required": false
+		},
+		"contentKey": {
+			"type": "string",
+			"enum": [
+				"departure",
+				"arrival",
+				"TermCondition"
+			],
+			"description": "Modification key for the content category (e.g. departure: the departure time of a flight is used as enrichment value",
+			"required": false
+		},
+		"contentValue": {
+			"type": "string",
+			"description": "Modifier for the content key (e.g. for departure, a value of -60 means 60 minutes prior to departure time, for Term and Condition a uri to them",
+			"required": false
+		},
+		"mandatory": {
+			"type": "boolean",
+			"description": "Defines whether the element is mandatory or not",
+			"required": false
+		},
+		"errorText": {
+			"type": "string",
+			"description": "Contains an error message",
+			"required": false
+		}
+	}
+}

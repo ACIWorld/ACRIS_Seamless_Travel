@@ -1,0 +1,13 @@
+#%RAML 1.0
+---
+  
+description: The parameter for a paging response
+queryParameters:
+  length:
+    type: integer
+    description: The length of the returning list.
+    default: 50
+  offset:
+    type: integer
+    description: The offset of the returning list.
+    default: 0

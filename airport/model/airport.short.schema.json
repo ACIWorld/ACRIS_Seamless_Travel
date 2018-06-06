@@ -1,0 +1,41 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "AirportShort",
+	"type": "object",
+	"description": "The airport Object represents the short representation of the airport in STP app-service",
+	"properties": {
+		"airportID": {
+			"type": "object",
+			"javaType": "java.lang.Long",
+			"description": "The airport's ID",
+			"required": true
+		},
+		"iataCode": {
+			"type": "string",
+			"description": "The airport's iata code",
+			"required": true
+		},
+		"cityName": {
+			"type": "string",
+			"description": "The airport's city name (same as visitor-city-name) in the selected language"
+		},
+		"country": {
+			"type": "object",
+			"description": "The counry the airport belongs to.",
+			"properties": {
+				"countryName": {
+					"type": "string",
+					"description": "The country's name in the requested language"
+				},
+				"countryFlagURL": {
+					"description": "The images of the country flag",
+					"$ref": "../../image/model/image.schema.json"
+				}
+			}
+		},
+		"airportName": {
+			"type": "string",
+			"description": "The airports name"
+		}
+	}
+}

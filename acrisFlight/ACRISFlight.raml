@@ -1,0 +1,108 @@
+#%RAML 1.0
+---
+title: API for Flight
+version: v1
+protocols: [ HTTPS ]
+
+baseUri: https://{serverName}/{appName}-{version}
+baseUriParameters:
+  serverName:
+    description: the name of the server
+    example: api-dev.munich-airport.de
+  appName:
+    description: the name of the application
+    example: aci-flight
+
+mediaType: application/json
+
+securitySchemes:
+  securedWithApiKey:          !include ../restBase/traits/securedWithApiKey.yaml
+
+types:
+  FlightNumber:               !include model/flightNumber.schema.json
+  FlightArrivalInformation:   !include model/flightArrivalInformation.schema.json
+  FlightDepartureInformation: !include model/flightDepartureInformation.schema.json
+  Flight:                     !include model/ACRISFlight.schema.json
+  FlightList:                 !include model/ACRISFlightList.schema.json
+
+resourceTypes:
+  FlightRequest:              !include traits/flightRequestResource.yaml
+
+traits:
+  PageingList:                !include traits/pageingListParam.yaml
+  TimestampQueryParam:        !include ../restBase/traits/timestampQueryParam.yaml
+  TimeRangeParam:             !include traits/timeRangeParam.yaml
+  SecuredWithApiKeyResponse:  !include ../restBase/traits/securedWithApiKeyResponse.yaml
+  AcceptLanguageHeader:       !include ../restBase/traits/acceptLanguageHeader.yaml
+
+securedBy: [securedWithApiKey]
+
+# flights up to 24h should be provided by the API
+
+/flightDetails/{airlineCode}/{flightNumber}/{origin_flight_date}:
+  is: [AcceptLanguageHeader, SecuredWithApiKeyResponse]
+  displayName: GetFlightsDetails
+  uriParameters:
+    airlineCode:
+      description: The operating carrier of the flight in IATA or ICAO
+      type: string
+      minLength: 2
+      maxLength: 3
+    flightNumber:
+      description: Flight number, padded to at least 3 digits.
+      type: string
+      minLength: 3
+      maxLength: 4
+    origin_flight_date:
+      description: Scheduled flight origin date based on the flight not the flight leg. Note, For a multi leg flight sharing the same flight number (e.g. LHR - HKG - SYD), the origin_flight_date value for the second leg will be the departure date of the first leg.
+      example: 2015-10-15
+  get:
+    description: Returns the found flights with the given flight number for the given date.
+    queryParameters:
+      suffix:
+        description: The suffix of the flight which is optional
+    responses:
+      200:
+        description: Returns the found flights. Maybe empty.
+        body:
+          type: FlightList
+      400:
+        description: One or more of the path parameter values is not valid
+      
+      
+  /{dep_airport_code}/{arr_airport_code}:
+    is: [AcceptLanguageHeader, SecuredWithApiKeyResponse]
+    displayName: GetFlightDetails
+    uriParameters:
+      dep_airport_code:
+        description: Code (IATA or ICAO) of scheduled departure airport
+        type: string
+        minLength: 3
+        maxLength: 4
+      arr_airport_code:
+        description: Code (IATA or ICAO) of scheduled arrival airport
+        type: string
+        minLength: 3
+        maxLength: 4
+    get:
+      description: Returns the details for a single flight with the given ID. The path parameters follows the AIDX unique flight id format.
+      queryParameters:
+        suffix:
+          description: The suffix of the flight which is optional
+      responses:
+        200:
+          description: Returns the details of the flight which was found
+          body:
+            type: Flight
+        400:
+          description: One or more of the path parameter values is not valid
+        404:
+          description: The flight was not found
+
+/flight/{airport}/arrival:
+  type:  { FlightRequest: { getDesc :  arriving } }
+  is: [AcceptLanguageHeader]
+
+/flight/{airport}/departure:
+  type:  { FlightRequest: { getDesc :  departing } }
+  is: [AcceptLanguageHeader]

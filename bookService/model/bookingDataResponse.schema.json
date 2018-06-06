@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "BookingDataResponse",
+	"type": "object",
+	"description": "Booking response data",
+	"properties": {
+		"serviceHeader": {
+			"$ref": "serviceHeader.schema.json",
+			"required": true
+		},
+		"serviceFormPage": {
+			"$ref": "serviceFormPage.schema.json",
+			"required": false
+		},
+		"validationError": {
+			"type": "string",
+			"description": "Error message from the service provider",
+			"required": false
+		},
+		"bookingFee": {
+			"$ref": "bookingFee.schema.json",
+			"required": false
+		},
+		"termConditionURL": {
+			"type": "string",
+			"format": "URI",
+			"description": "The URL to the terms and conditions of the service provider",
+			"required": false
+		}
+	}
+}

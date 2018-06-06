@@ -1,0 +1,11 @@
+{
+	"type": "object",
+	"title": "ResponseMsg",
+	"required": false,
+	"properties": {
+		"msg": {
+			"type": "string",
+			"required": true
+		}
+	}
+}

@@ -1,0 +1,48 @@
+{
+	"description": "An address following the convention of http://microformats.org/wiki/hcard",
+	"title": "Address",
+	"type": "object",
+	"properties": {
+		"post-office-box": {
+			"type": "string",
+			"description": "The post office box"
+		},
+		"extended-address": {
+			"type": "string",
+			"description": "The extended address (Suite 207)"
+		},
+		"street-address": {
+			"type": "string",
+			"description": "The street address (665 3rd St.)"
+		},
+		"locality": {
+			"type": "string",
+			"description": "The locality (San Francisco)"
+		},
+		"region": {
+			"type": "string",
+			"description": "The region (CA)"
+		},
+		"postal-code": {
+			"type": "string",
+			"description": "The postal code (94107)"
+		},
+		"country-name": {
+			"type": "string",
+			"description": "The country's name (U.S.A.)"
+		},
+		"country-tag": {
+			"type": "string",
+			"description": "The country's 2 letter code (US)"
+		}
+	},
+	"required": [
+		"locality",
+		"region",
+		"country-name"
+	],
+	"dependencies": {
+		"post-office-box": "street-address",
+		"extended-address": "street-address"
+	}
+}
