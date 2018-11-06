@@ -1,9 +1,9 @@
 {
 	"$schema": "http://json-schema.org/draft-03/schema",
-	"title": "ACRISFlightList",
+	"title": "FlightList",
 	"type": "array",
 	"description": "A list of flights",
 	"items": {
-		"$ref": "ACRISFlight.schema.json"
+		"$ref": "flight.schema.json"
 	}
 }

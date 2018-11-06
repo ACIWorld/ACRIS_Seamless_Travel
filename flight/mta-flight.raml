@@ -22,25 +22,27 @@ types:
   FlightNumber:               !include model/flightNumber.schema.json
   FlightArrivalInformation:   !include model/flightArrivalInformation.schema.json
   FlightDepartureInformation: !include model/flightDepartureInformation.schema.json
-  Flight:                     !include model/ACRISFlight.schema.json
-  FlightList:                 !include model/ACRISFlightList.schema.json
+  Flight:                     !include model/flight.schema.json
+  FlightList:                 !include model/flightList.schema.json
 
 resourceTypes:
   FlightRequest:              !include traits/flightRequestResource.yaml
 
 traits:
   PageingList:                !include traits/pageingListParam.yaml
+  LastUpdate:                !include traits/lastUpdateParam.yaml
   TimestampQueryParam:        !include ../restBase/traits/timestampQueryParam.yaml
   TimeRangeParam:             !include traits/timeRangeParam.yaml
   SecuredWithApiKeyResponse:  !include ../restBase/traits/securedWithApiKeyResponse.yaml
   AcceptLanguageHeader:       !include ../restBase/traits/acceptLanguageHeader.yaml
+  BadRequest:                 !include ../restBase/traits/badRequestResponse.yaml
 
 securedBy: [securedWithApiKey]
 
 # flights up to 24h should be provided by the API
 
-/flightDetails/{airlineCode}/{flightNumber}/{origin_flight_date}:
-  is: [AcceptLanguageHeader, SecuredWithApiKeyResponse]
+/flightDetails/{airlineCode}/{flightNumber}/{originFlightDate}:
+  is: [AcceptLanguageHeader, SecuredWithApiKeyResponse, BadRequest]
   displayName: GetFlightsDetails
   uriParameters:
     airlineCode:
@@ -53,7 +55,7 @@ securedBy: [securedWithApiKey]
       type: string
       minLength: 3
       maxLength: 4
-    origin_flight_date:
+    originFlightDate:
       description: Scheduled flight origin date based on the flight not the flight leg. Note, For a multi leg flight sharing the same flight number (e.g. LHR - HKG - SYD), the origin_flight_date value for the second leg will be the departure date of the first leg.
       example: 2015-10-15
   get:
@@ -66,20 +68,18 @@ securedBy: [securedWithApiKey]
         description: Returns the found flights. Maybe empty.
         body:
           type: FlightList
-      400:
-        description: One or more of the path parameter values is not valid
-      
-      
-  /{dep_airport_code}/{arr_airport_code}:
-    is: [AcceptLanguageHeader, SecuredWithApiKeyResponse]
+
+
+  /{depAirportCode}/{arrAirportCode}:
+    is: [AcceptLanguageHeader, SecuredWithApiKeyResponse, BadRequest]
     displayName: GetFlightDetails
     uriParameters:
-      dep_airport_code:
+      depAirportCode:
         description: Code (IATA or ICAO) of scheduled departure airport
         type: string
         minLength: 3
         maxLength: 4
-      arr_airport_code:
+      arrAirportCode:
         description: Code (IATA or ICAO) of scheduled arrival airport
         type: string
         minLength: 3
@@ -94,15 +94,65 @@ securedBy: [securedWithApiKey]
           description: Returns the details of the flight which was found
           body:
             type: Flight
-        400:
-          description: One or more of the path parameter values is not valid
         404:
           description: The flight was not found
 
 /flight/{airport}/arrival:
   type:  { FlightRequest: { getDesc :  arriving } }
-  is: [AcceptLanguageHeader]
 
 /flight/{airport}/departure:
   type:  { FlightRequest: { getDesc :  departing } }
-  is: [AcceptLanguageHeader]
+
+/flight/{airport}/changes:
+  description: |
+    the changes API is optional
+    It schould only be implemented if sharing of data with other Backend-Systems is needed
+  uriParameters:
+    airport:
+      description: The airport as IATA code
+      example: MUC
+      type: string
+      minLength: 3
+      maxLength: 3
+  /today:
+    is: [LastUpdate]
+    get:
+      description: return the flight updates for the current UTC day since the given timestamp
+      responses:
+        200:
+          body:
+            schema: FlightList
+  /pastdays:
+    is: [LastUpdate]
+    get:
+      description: |
+        Return the flight updates for the flights of the past days since the given timestamp.
+        Normally only flights for yesterday are available, only when flights are delayed a long time past days are more than tomorrow.
+      responses:
+        200:
+          body:
+            schema: FlightList
+  /tomorrow:
+    is: [LastUpdate]
+    get:
+      description: |
+        Return the flight updates for the flights of tomorrow since the given timestamp.
+        Until the data for the next day are valid (typically in the afternoon), it's okay to return an empty list.
+      responses:
+        200:
+          body:
+            schema: FlightList
+  /flightplan:
+    is: [LastUpdate]
+    get:
+      description: return a list of all planned flights, changed since the given timestamp
+      queryParameters:
+        futureDays:
+          type: integer
+          description: the amount of days in the future, if not present all scheduled flights are returned
+          required: false
+          minimum: 1
+      responses:
+        200:
+          body:
+            schema: FlightList
