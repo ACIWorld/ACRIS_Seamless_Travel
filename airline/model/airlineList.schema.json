@@ -1,15 +1,10 @@
 {
 	"$schema": "http://json-schema.org/draft-03/schema",
 	"title": "AirlineList",
-	"type": "object",
+	"type": "array",
 	"description": "The list of all airlines",
-	"properties": {
-		"airlines": {
-			"type": "array",
-			"description": "The airline items",
-			"items": {
-				"$ref": "airline.full.schema.json"
-			}
-		}
+	"items": 
+	{
+		"$ref": "airline.full.schema.json"
 	}
 }
