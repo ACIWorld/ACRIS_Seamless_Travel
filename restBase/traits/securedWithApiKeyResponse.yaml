@@ -1,4 +1,4 @@
-#%RAML 1.0
+#%RAML 1.0 Trait
 ---
 
 description: If the API is secured with an API Key, all request need the default responses
