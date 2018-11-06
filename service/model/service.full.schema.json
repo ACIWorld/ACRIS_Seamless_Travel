@@ -1,92 +1,94 @@
 {
-	"$schema": "http://json-schema.org/draft-03/schema",
-	"title": "ServiceFull",
-	"description": "Service with full details",
-	"type": "object",
-	"extends": {
-		"$ref": "service.short.schema.json"
-	},
-	"properties": {
-		"title": {
-			"description": "The title of the service item. The title will be shown in the list of services and is the header of the service detail. This text is required otherwise the service will not be shown in the list.",
-			"type": "string",
-			"required": true
-		},
-		"subTitle": {
-			"description": "The sub title of the service item. This text will be shown below the service title.",
-			"type": "string"
-		},
-		"icon": {
-			"description": "The URL of the icon which will be shown in the service item. The icon will be reloaded and has to be in 2 sizes (icon_low and icon_high) 30x30 pixel and 60x60 pixel. This icons are required because otherwise the service will not be shown in the list.",
-			"$ref": "../../image/model/image.schema.json"
-		},
-		"shortDescription": {
-			"description": "The short description of the service item. This text will be shown in the first pageview of the service item after the title and the subTitle.",
-			"type": "string"
-		},
-		"description": {
-			"description": "The long description of the service item. This text will be shown in the details of the service item.",
-			"type": "string"
-		},
-		"isBookable": {
-			"description": "True if the service can be booked",
-			"type": "boolean"
-		},
-		"serviceBulletpoints": {
-			"description": "The services (key features) here bulletpoints of the service item. The order of each elment is defined over all key features. ",
-			"type": "array",
-			"items": {
-				"$ref": "serviceBulletpoint.schema.json"
-			}
-		},
-		"serviceTables": {
-			"description": "The services (key features) here table of the service item. The order of each elment is defined over all key features. ",
-			"type": "array",
-			"items": {
-				"$ref": "serviceTable.schema.json"
-			}
-		},
-		"serviceTexts": {
-			"description": "The services (key features) here bulletpoints of the service item. The order of each elment is defined over all key features. ",
-			"type": "array",
-			"items": {
-				"$ref": "serviceText.schema.json"
-			}
-		},
-		"titleImage": {
-			"description": "The title Image of the Service.",
-			"$ref": "../../image/model/image.schema.json"
-		},
-		"titleImage_small": {
-			"description": "The title Image of the Service.",
-			"$ref": "../../image/model/image.schema.json"
-		},
-		"desciptionImage_vertical": {
-			"description": "The vertical description Image of the Service.",
-			"$ref": "../../image/model/image.schema.json"
-		},
-		"descriptionImage_horizontal": {
-			"description": "The title Image of the Service.",
-			"$ref": "../../image/model/image.schema.json"
-		},
-		"downloads": {
-			"description": "The downloads area of the service.",
-			"type": "array",
-			"items": {
-				"type": "string",
-				"format": "uri"
-			}
-		},
-		"specials": {
-			"description": "The different specials for the service. The title of the special will be shown in the service details. The details of the special can be loaded by the unique identifier of the special. If the list is empty the whole section will disapear in the service details.",
-			"type": "array",
-			"items": {
-				"$ref": "special.short.schema.json"
-			}
-		},
-		"provider": {
-			"description": "The provider of the service.",
-			"$ref": "provider.full.schema.json"
-		}
-	}
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "ServiceFull",
+  "description": "Service with full details",
+  "type": "object",
+  "extends": {
+    "$ref": "service.short.schema.json"
+  },
+  "properties": {
+    "title": {
+      "description": "The title of the service item. The title will be shown in the list of services and is the header of the service detail. This text is required otherwise the service will not be shown in the list.",
+      "type": "string"
+    },
+    "subTitle": {
+      "description": "The sub title of the service item. This text will be shown below the service title.",
+      "type": "string"
+    },
+    "icon": {
+      "description": "The URL of the icon which will be shown in the service item. The icon will be reloaded and has to be in 2 sizes (icon_low and icon_high) 30x30 pixel and 60x60 pixel. This icons are required because otherwise the service will not be shown in the list.",
+      "$ref": "../../image/model/image.schema.json"
+    },
+    "shortDescription": {
+      "description": "The short description of the service item. This text will be shown in the first pageview of the service item after the title and the subTitle.",
+      "type": "string"
+    },
+    "description": {
+      "description": "The long description of the service item. This text will be shown in the details of the service item.",
+      "type": "string"
+    },
+    "isBookable": {
+      "description": "True if the service can be booked",
+      "type": "boolean"
+    },
+    "serviceBulletpoints": {
+      "description": "The services (key features) here bulletpoints of the service item. The order of each elment is defined over all key features. ",
+      "type": "array",
+      "items": {
+        "$ref": "serviceBulletpoint.schema.json"
+      }
+    },
+    "serviceTables": {
+      "description": "The services (key features) here table of the service item. The order of each elment is defined over all key features. ",
+      "type": "array",
+      "items": {
+        "$ref": "serviceTable.schema.json"
+      }
+    },
+    "serviceTexts": {
+      "description": "The services (key features) here bulletpoints of the service item. The order of each elment is defined over all key features. ",
+      "type": "array",
+      "items": {
+        "$ref": "serviceText.schema.json"
+      }
+    },
+    "titleImage": {
+      "description": "The title Image of the Service.",
+      "$ref": "../../image/model/image.schema.json"
+    },
+    "titleImage_small": {
+      "description": "The title Image of the Service.",
+      "$ref": "../../image/model/image.schema.json"
+    },
+    "desciptionImage_vertical": {
+      "description": "The vertical description Image of the Service.",
+      "$ref": "../../image/model/image.schema.json"
+    },
+    "descriptionImage_horizontal": {
+      "description": "The title Image of the Service.",
+      "$ref": "../../image/model/image.schema.json"
+    },
+    "downloads": {
+      "description": "The downloads area of the service.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "specials": {
+      "description": "The different specials for the service. The title of the special will be shown in the service details. The details of the special can be loaded by the unique identifier of the special. If the list is empty the whole section will disapear in the service details.",
+      "type": "array",
+      "items": {
+        "$ref": "special.short.schema.json"
+      }
+    },
+    "provider": {
+      "description": "The provider of the service.",
+      "$ref": "provider.full.schema.json"
+    }
+  },
+  "required": [
+    "title"
+  ]
 }
