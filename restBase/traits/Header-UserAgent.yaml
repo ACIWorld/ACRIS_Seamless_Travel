@@ -1,4 +1,4 @@
-#%RAML 1.0
+#%RAML 1.0 Trait
 ---
   
 description: the user agent of the browser
