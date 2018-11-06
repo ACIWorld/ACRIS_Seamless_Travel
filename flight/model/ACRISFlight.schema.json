@@ -1,0 +1,133 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "ACRISFlight",
+	"type": "object",
+	"description": "The flight in stp app services",
+	"properties": {
+		"operatingAirline": {
+			"type": "object",
+			"required": true,
+			"description": "The airline operating the flight. Either IATA or ICAO must be present",
+			"properties": {
+				"iataCode": {
+					"type": "string",
+					"description": "The airline's IATA-Code",
+					"minLength": 2,
+					"maxLength": 2
+				},
+				"icaoCode": {
+					"type": "string",
+					"description": "The airline's ICAO-Code",
+					"minLength": 3,
+					"maxLength": 3
+				},
+				"name": {
+					"type": "string",
+					"description": "The long name of airline"
+				}
+			}
+		},
+		"aircraftType": {
+			"type": "object",
+			"description": "The aircraft-type information",
+			"properties": {
+				"icaoCode": {
+					"type": "string",
+					"description": "The aircraft's ICAO-Code",
+					"minLength": 4,
+					"maxLength": 4
+				},
+				"modelName": {
+					"type": "string",
+					"description": "The model name of the aircraft"
+				},
+				"registration": {
+					"type": "string",
+					"description": "The registration of the aircraft"
+				}
+			}
+		},
+		"flightNumber": {
+			"$ref": "flightNumber.schema.json",
+			"description": "The flight's operating flightNumber",
+			"required": true
+		},
+		"codeShares": {
+			"type": "array",
+			"description": "The code-shares associated with the flight",
+			"items": {
+				"$ref": "flightNumber.schema.json"
+			}
+		},
+		"departureAirport": {
+			"type": "string",
+			"description": "The departure airport as IATA format"
+		},
+		"arrivalAirport": {
+			"type": "string",
+			"description": "The arrival airport as IATA format"
+		},
+		"originDate": {
+			"type": "string",
+			"format": "date-time",
+			"description": "Date expressed in UTC. Time element is not used. This date MUST not change once initialized. For a flight SFO-DEN-LHR both flight legs SFO-DEN and DEN-LHR will have the origin date of the SFO departing date (example 2015-10-15)."
+		},
+		"departure": {
+			"type": "object",
+			"description": "The departure infomation for the flight",
+			"$ref": "flightDepartureInformation.schema.json"
+		},
+		"arrival": {
+			"type": "object",
+			"description": "The arrival information for the flight",
+			"$ref": "flightArrivalInformation.schema.json"
+		},
+		"flightStatus": {
+			"type": "string",
+			"enum": [
+				"Canceled",
+				"Diverted",
+				"Scheduled",
+				"GateOpened",
+				"Boarding",
+				"GateClosed",
+				"Departed",
+				"InApproach",
+				"Landed",
+				"BagClaimStarted",
+				"FlightFinished"
+			],
+			"description": "The status of the flight",
+			"required": true
+		},
+		"via": {
+			"type": "array",
+			"description": "A list of airports and the corresponding arrival and departure information for stops during the flight. The order in the array represents the flight order.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"viaAirport": {
+						"type": "string",
+						"description": "The via airport as IATA format"
+					},
+					"departure": {
+						"type": "object",
+						"description": "The departure infomation for the flight",
+						"$ref": "flightDepartureInformation.schema.json"
+					},
+					"arrival": {
+						"type": "object",
+						"description": "The arrival information for the flight",
+						"$ref": "flightArrivalInformation.schema.json"
+					}
+				}
+			}
+		},
+		"lastUpdate": {
+			"type": "string",
+ 			"format": "date-time",
+ 			"description": "Date and time expressed in UTC. This timestamp indicates the last time any data of this flight was updated.",
+ 			"required": false
+ 		}
+	}
+}
