@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-03/schema",
-	"title": "ACRISFlight",
+	"title": "Flight",
 	"type": "object",
 	"description": "The flight in stp app services",
 	"properties": {
