@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "ServiceCategory",
+  "type": "object",
+  "extends": {
+    "$ref": "serviceCategory.short.schema.json"
+  },
+  "properties": {
+    "categoryType": {
+      "type": "string",
+      "description": "Type of the category (BASECATEGORY: root, SUBCATEGORY: level below root, SERVICELIST: list of services, SERVICEPAGEVIEW: page of services)",
+      "enum": ["BASECATEGORY", "SUBCATEGORY", "SERVICELIST", "SERVICEPAGEVIEW"]
+    }
+  }
+}

@@ -30,18 +30,20 @@ traits:
     queryParameters:
       searchString:
         type: string
-        description: The string to search for a arrival
+        description: The string to search for
         required: false
       length:
         type: integer
-        description: The length of the returning flightslist
+        description: The maximum length of the returning list
         default: 50
         required: false
       offset:
         type: integer
-        description: The offset of the returning list.
+        description: The offset of the returning list
         default: 0
         required: false
+
+
 /service/{serviceId}:
   uriParameters:
     serviceId:
@@ -92,6 +94,15 @@ traits:
       200:
         body:
           type: ServiceList
+  /all:
+    get:
+    description: |
+      Returns detailed information for all services of the given airport.
+      is: [AcceptLang]
+    responses:
+      200:
+        body:
+          type: ServiceList
 
 /topServices/{airportCode}:
   is: [BadRequest]
@@ -130,7 +141,7 @@ traits:
       maxLength: 4
   get:
     description: |
-      Returns a list of available service categories for a specific airport.
+      Returns a list of available root service categories for a specific airport. (categoryType: BASECATEGORY)
       The language has to be given as parameter for the selection in the data base.
     is: [AcceptLang]
     responses:
@@ -139,6 +150,17 @@ traits:
           type: ServiceCategoryList
       204:
         description: no content for language found
+  /all:
+    get:
+    description: |
+      Returns a list of all available categories for a specific airport.
+    is: [AcceptLang]
+    responses:
+      200:
+        body:
+          type: ServiceCategoryList
+      204:
+        description: no content for language found.
 
 /serviceCategory/{categoryId}:
   uriParameters:
