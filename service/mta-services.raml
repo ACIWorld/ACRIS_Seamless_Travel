@@ -96,13 +96,13 @@ traits:
           type: ServiceList
   /all:
     get:
-    description: |
-      Returns detailed information for all services of the given airport.
+      description: |
+        Returns detailed information for all services of the given airport.
       is: [AcceptLang]
-    responses:
-      200:
-        body:
-          type: ServiceList
+      responses:
+        200:
+          body:
+            type: ServiceList
 
 /topServices/{airportCode}:
   is: [BadRequest]
@@ -152,15 +152,15 @@ traits:
         description: no content for language found
   /all:
     get:
-    description: |
-      Returns a list of all available categories for a specific airport.
-    is: [AcceptLang]
-    responses:
-      200:
-        body:
-          type: ServiceCategoryList
-      204:
-        description: no content for language found.
+      description: |
+        Returns a list of all available categories for a specific airport.
+      is: [AcceptLang]
+      responses:
+        200:
+          body:
+            type: ServiceCategoryList
+        204:
+          description: no content for language found.
 
 /serviceCategory/{categoryId}:
   uriParameters:
