@@ -95,6 +95,7 @@ traits:
         body:
           type: ServiceList
   /all:
+    is: [BadRequest]
     get:
       description: |
         Returns detailed information for all services of the given airport.
@@ -151,6 +152,7 @@ traits:
       204:
         description: no content for language found
   /all:
+    is: [BadRequest]
     get:
       description: |
         Returns a list of all available categories for a specific airport.
