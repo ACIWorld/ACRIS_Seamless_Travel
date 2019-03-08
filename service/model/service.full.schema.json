@@ -52,6 +52,13 @@
         "$ref": "serviceText.schema.json"
       }
     },
+    "serviceCategories": {
+      "description": "List containing all the ids of categories this service is assigned to. Must be filled if the service is requested via /services/{airportCode}/all. ",
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
     "titleImage": {
       "description": "The title Image of the Service.",
       "$ref": "../../image/model/image.schema.json"
