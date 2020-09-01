@@ -19,7 +19,6 @@ The Project _Seamless Travel_ in the ACRIS working group has defined a standard 
 - Service information
 - Service booking
 - Trip data
-
 Two documents are describing the background:
 
 - Business Requirement Document (BRD)
@@ -38,9 +37,17 @@ Change requests can concern one or more of these components.
 To introduce a change request:
 
 - fork the repository
-- create a pull request
+- create a pull requestv
 
 For any questions use the contacts below
+
+## Links
+### ACI World
+https://aci.aero
+
+### ACI ACRIS Website
+https://acris.aero
+
 
 ## Points of Contact
 
@@ -50,7 +57,7 @@ For any questions use the contacts below
 > Serge Yonke Nguewo  
 > Senior Manager, Facilitation and IT  
 > 800 rue du Square Victoria Montréal, Québec H4Z 1G8 Canada  
-> SYonkeNguewo@aci.aero
+> SYonkeNguewo@aci.aerov
 
 ### Technical Inquiries
 
