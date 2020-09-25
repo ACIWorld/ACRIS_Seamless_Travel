@@ -1,0 +1,9 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"title": "FlightList",
+	"type": "array",
+	"description": "A list of flights",
+	"items": {
+		"$ref": "flight.schema.json"
+	}
+}

@@ -1,16 +1,9 @@
 {
-	"$schema": "http://json-schema.org/draft-03/schema",
-	"title": "ServiceList",
-	"description": "The list of elements in the category",
-	"type": "object",
-	"required": true,
-	"properties": {
-		"services": {
-			"type": "array",
-			"required": false,
-			"items": {
-				"$ref": "service.full.schema.json"
-			}
-		}
-	}
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "ServiceList",
+  "description": "The list of services",
+  "type": "array",
+  "items": {
+    "$ref": "service.full.schema.json"
+  }
 }

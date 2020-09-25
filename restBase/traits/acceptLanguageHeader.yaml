@@ -1,4 +1,4 @@
-#%RAML 1.0
+#%RAML 1.0 Trait
 ---
 
 description: The HTTP Header for the language with priorities in which the response should be returned.

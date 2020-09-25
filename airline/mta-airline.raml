@@ -26,21 +26,46 @@ types:
 
 traits:
   AcceptLang:        !include ../restBase/traits/acceptLanguageHeader.yaml
+  BadRequest:        !include ../restBase/traits/badRequestResponse.yaml
 
-/detail/{airline_id}:
+/detail/{airlineId}:
   is: [AcceptLang]
+  uriParameters:
+    airlineId:
+      description: The id of the airline
+      type: integer
+      required: true
   get:
     description: Returns detailed information for a specific airline
     responses:
       200:
         body:
           type: Airline
+      404:
+        description: The airline could not be found
 
 /airlines:
   is: [AcceptLang]
   get:
-    description: Returns a list of all available airlines for an specific airport. This usually is a list of all the airlines that offer services (operating flights as well as code shares) at the requested source.
+    description: Returns a list of all available airlines.
     responses:
       200:
         body:
           type: AirlineList
+  /{airportCode}:
+    is: [AcceptLang, BadRequest]
+    uriParameters:
+      airportCode:
+        description: Code (IATA or ICAO) of the requested airport
+        type: string
+        minLength: 3
+        maxLength: 4
+    get:
+      description: Returns a list of all available airlines for an specific airport. This usually is a list of all the airlines that offer services (operating flights as well as code shares) at the requested source.
+      responses:
+        200:
+          body:
+            type: AirlineList
+        404:
+          description: The airport was not found
+          

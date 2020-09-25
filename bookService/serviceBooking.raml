@@ -41,8 +41,12 @@ securedBy: [securedWithApiKey]
         body:
           type: BookingDataResponse
 
-/serviceBooking/{bookingid}:
+/serviceBooking/{bookingId}:
   is: [AcceptLanguageHeader, UnknownKeyResponse: {typeName: ResponseMsgError}, UnauthorizedUserResponse]
+  uriParameters:
+    bookingId:
+      description: The id of the booking 
+      type: integer
   put:
     description: Register a certain booking request (i.e. complete the booking process)
     body:

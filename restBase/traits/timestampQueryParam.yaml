@@ -1,4 +1,4 @@
-#%RAML 1.0
+#%RAML 1.0 Trait
 ---
   
 description: a parameter for a timestamp

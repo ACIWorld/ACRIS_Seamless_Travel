@@ -18,7 +18,7 @@ securitySchemes:
 
 mediaType: application/json
 
-types: 
+types:
   Airport:             !include model/airport.full.schema.json
   AirportList:         !include model/airportList.schema.json
   AirportInfo:         !include model/airportInfo.schema.json
@@ -29,39 +29,59 @@ traits:
   TimestampQueryParam: !include ../restBase/traits/timestampQueryParam.yaml
   AcceptLang:          !include ../restBase/traits/acceptLanguageHeader.yaml
   UnknownKeyResponse:  !include ../restBase/traits/unknownKeyResponseWithMsg.yaml
+  BadRequest:          !include ../restBase/traits/badRequestResponse.yaml
 
 securedBy: [securedWithApiKey]
 
-/detail/{airportID}/:
+/airport/{airportId}/:
   is: [AcceptLang]
-  description: GET returns detailed information about a specific airport  
+  description: GET returns detailed information about a specific airport
+  uriParameters:
+    airportId:
+      description: The id of the airport
+      type: integer
+      required: true
   get:
     description: Returns detailed information about a specific airport
     responses:
       200:
         body:
           type: Airport
-          
-/detail/iata/{iataCode}/:
-  is: [AcceptLang]
+      404:
+        description: The airport was not found
+
+/airport/iata/{iataCode}/:
+  is: [AcceptLang, UnknownKeyResponse: {typeName: ResponseMsg404}, BadRequest]
   description: GET returns detailed information of an active airport for the specified IATA code
+  uriParameters:
+    iataCode:
+      description: The IATA code of the requested airport
+      type: string
+      minLength: 3
+      maxLength: 3
   get:
     description: Returns detailed information of an active airport for the specified IATA code
     responses:
       200:
         body:
           type: Airport
-          
-/detail/icao/{icaoCode}/:
-  is: [AcceptLang]
+
+/airport/icao/{icaoCode}/:
+  is: [AcceptLang, UnknownKeyResponse: {typeName: ResponseMsg404}, BadRequest]
   description: GET returns detailed information of an active airport for the specified ICAO code
+  uriParameters:
+    icaoCode:
+      description: The ICAO code of the requested airport
+      type: string
+      minLength: 4
+      maxLength: 4
   get:
     description: Returns detailed information of an active airport for the specified ICAO code
     responses:
       200:
         body:
           type: Airport
-          
+
 /airports:
   is: [AcceptLang]
   description: GET returns all active airports
@@ -71,26 +91,50 @@ securedBy: [securedWithApiKey]
       200:
         body:
           type: AirportList
-          
+  /{airportCode}:
+    is: [AcceptLang, UnknownKeyResponse: {typeName: ResponseMsg404}, BadRequest]
+    uriParameters:
+      airportCode:
+        description: Code (IATA or ICAO) of the requested airport
+        type: string
+        minLength: 3
+        maxLength: 4
+    get:
+      description: Returns a list of all active airports, which are connected with a direct flight (no transfer is needed).
+      responses:
+        200:
+          body:
+            type: AirportList
+
+
 /airportInfo/{airportInfoId}:
   displayName: airportInfo
-  is: [AcceptLang,  UnknownKeyResponse: {typeName: ResponseMsg404}]
+  is: [AcceptLang, UnknownKeyResponse: {typeName: ResponseMsg404}]
   description: GET returns specified airport's information
+  uriParameters:
+    airportInfoId:
+      description: The id of the airport information
+      type: integer
+      required: true
   get:
     description: Returns specified airport's information
     responses:
       200:
         body:
           type: AirportInfo
-          
+
 /airportInfos/{airportId}:
   displayName: airportInfos
-  is: [AcceptLang,  UnknownKeyResponse: {typeName: ResponseMsg404}]
+  is: [AcceptLang, UnknownKeyResponse: {typeName: ResponseMsg404}]
   description: GET returns all information about the specified airport
+  uriParameters:
+    airportId:
+      description: The id of the airport
+      type: integer
+      required: true
   get:
     description: Returns all information about the specified airport
     responses:
       200:
         body:
           type: AirportInfoList
-  

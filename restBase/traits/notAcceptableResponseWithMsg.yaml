@@ -1,4 +1,4 @@
-#%RAML 1.0
+#%RAML 1.0 Trait
 ---
   
 description: response for a rejected cancelation request with a msg in the body

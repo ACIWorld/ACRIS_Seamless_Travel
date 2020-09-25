@@ -20,7 +20,7 @@ types:
   CreateTripInfo:        !include model/createTripInfo.schema.json
   TripInfo:              !include model/tripInfo.schema.json
   TripList:              !include model/tripList.schema.json
-  CreateTrip:            !include model/tripInfo.schema.json
+  Trip:                  !include model/trip.schema.json
   PNR:                   !include model/pnr.schema.json
   ResponseMsg404:        !include ../restBase/model/responseMsg.schema.json
 
@@ -40,7 +40,14 @@ securedBy: [ securedWithApiKey ]
         body:
           type: TripList
 
-/flight/{tripID}/{flightID}:
+/flight/{tripId}/{flightId}:
+  uriParameters:
+    tripId:
+      description: The id of the trip
+      type: integer
+    flightId:
+      description: The id of the flight inside the trip
+      type: integer
   is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
   displayName: FlightByID
   put:
@@ -58,7 +65,14 @@ securedBy: [ securedWithApiKey ]
       500:
         description: the flight was not added to the trip, cause of an error of the subsystem
 
-/flightPNR/{tripID}/{flightID}:
+/flightPNR/{tripId}/{flightId}:
+  uriParameters:
+    tripId:
+      description: The id of the trip
+      type: integer
+    flightId:
+      description: The id of the flight inside the trip
+      type: integer
   is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
   displayName: FlightPNRByID
   put:
@@ -79,7 +93,17 @@ securedBy: [ securedWithApiKey ]
         description: the flight was not added to the trip, cause of an error of the subsystem
 
 
-/service/{tripID}/{source}/{serviceID}:
+/service/{tripId}/{source}/{serviceId}:
+  uriParameters:
+    tripId:
+      description: The id of the trip
+      type: integer
+    source:
+      description: Unique identifier of a booking's source, e.g. other participating airport
+      type: integer
+    serviceId:
+      description: The id of the service inside the trip
+      type: integer
   is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
   displayName: ServiceByID
   put:
@@ -121,6 +145,10 @@ securedBy: [ securedWithApiKey ]
         200:
           description: New trip was created or updated
   /{tripId}:
+    uriParameters:
+      tripId:
+        description: The id of the trip
+        type: integer
     is: [UnknownKeyResponse: {typeName: ResponseMsg404}]
     delete:
       description: Delete the trip 
