@@ -1,69 +1,88 @@
 {
-	"$schema": "http://json-schema.org/draft-03/schema",
-	"title": "LocationFull",
-	"type": "object",
-	"properties": {
-		"x": {
-			"description": "The x coordinate of the location",
-			"type": "number",
-			"required": true
-		},
-		"locationId": {
-			"description": "The location ID",
-			"type": "object",
-			"javaType": "java.lang.Long",
-			"required": true
-		},
-		"y": {
-			"description": "The y coordinate of the location",
-			"type": "number",
-			"required": true
-		},
-		"z": {
-			"description": "The z coordinate of the location",
-			"type": "number",
-			"required": true
-		},
-		"humanReadable": {
-			"description": "Human readable location name like terminal 2 or terminal 1",
-			"type": "string",
-			"required": true
-		},
-		"area": {
-			"description": "Area identification like room numbers or the name of corridors",
-			"type": "string",
-			"required": true
-		},
-		"externalId": {
-			"description": "External location ID",
-			"type": "string"
-		},
-		"description": {
-			"description": "The description of the location",
-			"type": "string"
-		},
-		"mapImage": {
-			"description": "The title image of the service",
-			"$ref": "../../image/model/image.schema.json"
-		},
-		"openingHours": {
-			"description": "The opening of the services at this dedicated location",
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"column1": {
-						"description": "The left item (first columng) of the table. Its allowed to put everything here like a date or a header. The text will not be formated and has to be in the correct format.",
-						"type": "string",
-						"required": true
-					},
-					"column2": {
-						"description": "The right item (second column) of the table. Its allowed to put everything here like a date or a header. The text will not be formated and has to be in the correct format.",
-						"type": "string",
-						"required": true
-					}
-				}
-			}
-		}
-	}
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "title": "LocationFull",
+    "type": "object",
+    "properties": {
+        "x": {
+            "description": "The x coordinate of the location",
+            "type": "number",
+            "required": true
+        },
+        "locationId": {
+            "description": "The location ID",
+            "type": "object",
+            "javaType": "java.lang.Long",
+            "required": true
+        },
+        "y": {
+            "description": "The y coordinate of the location",
+            "type": "number",
+            "required": true
+        },
+        "z": {
+            "description": "The z coordinate of the location",
+            "type": "number",
+            "required": true
+        },
+        "humanReadable": {
+            "description": "Human readable location name like terminal 2 or terminal 1",
+            "type": "string",
+            "required": true
+        },
+        "area": {
+            "description": "Area identification like room numbers or the name of corridors",
+            "type": "string",
+            "required": true
+        },
+        "externalId": {
+            "description": "External location ID",
+            "type": "string"
+        },
+        "description": {
+            "description": "The description of the location",
+            "type": "string"
+        },
+        "mapImage": {
+            "description": "The title image of the service",
+            "$ref": "../../image/model/image.schema.json"
+        },
+        "openingHours": {
+            "description": "The opening of the services at this dedicated location",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "column1": {
+                        "description": "The left item (first columng) of the table. Its allowed to put everything here like a date or a header. The text will not be formated and has to be in the correct format.",
+                        "type": "string",
+                        "required": true
+                    },
+                    "column2": {
+                        "description": "The right item (second column) of the table. Its allowed to put everything here like a date or a header. The text will not be formated and has to be in the correct format.",
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            }
+        },
+        "customAttributes": {
+            "description": "Custom attributes as key value pairs for this dedicated location",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "description": "The unique key in this array to identify one key value pair",
+                        "type": "string",
+                        "required": true
+                    },
+                    "value": {
+                        "description": "The value for the key value pair",
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            }
+        }
+    }
 }
