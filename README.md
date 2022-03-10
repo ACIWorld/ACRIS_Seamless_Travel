@@ -33,11 +33,7 @@ The ACI ACRIS Seamless Travel Standard consist of three components:
 3. Supporting files that contain implementation details for the interfaces and data models (RAML,
    JSON Schema)
 
-Change requests can concern one or more of these components.  
-To introduce a change request:
-
-- fork the repository
-- create a pull requestv
+Change requests can concern one or more of these components. The change process is described on the [ACRIS website](https://acris.aero).
 
 For any questions use the contacts below
 
@@ -53,24 +49,23 @@ https://acris.aero
 
 ### Organizational Inquiries
 
+> Kesang Ukyab
 > Airport Council International (ACI) World  
-> Serge Yonke Nguewo  
-> Senior Manager, Facilitation and IT  
+> Manager, Innovation and Technology
 > 800 rue du Square Victoria Montréal, Québec H4Z 1G8 Canada  
-> SYonkeNguewo@aci.aerov
+> kukyab@aci.aero
 
 ### Technical Inquiries
 
-> Munich Airport / Flughafen München  
+> Humphrey Loe
+> San Francisco International Airport  
+> P.O. Box 8097 
+> San Francisco, CA 94128
+> Humphrey.Loe@flysfo.com
+
 > Martin Rogal  
+> Munich Airport / Flughafen München  
 > Head of Development Technologies  
 > Nordallee 25  
 > 85356 München-Flughafen Germany  
 > martin.rogal@munich-airport.de
-
-> Munich Airport / Flughafen München  
-> Sebastian Stiffel  
-> Business Analyst  
-> Nordallee 25  
-> 85356 München-Flughafen Germany  
-> sebastian.stiffel@munich-airport.de
