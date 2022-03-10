@@ -59,9 +59,9 @@ https://acris.aero
 
 > Humphrey Loe
 > San Francisco International Airport  
-> P.O. Box 8097 
-> San Francisco, CA 94128 
-> Humphrey.Loe@flysfo.com 
+> P.O. Box 8097  
+> San Francisco, CA 94128  
+> Humphrey.Loe@flysfo.com  
 
 > Martin Rogal  
 > Munich Airport / Flughafen München  
