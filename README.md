@@ -49,9 +49,9 @@ https://acris.aero
 
 ### Organizational Inquiries
 
-> Kesang Ukyab
+> Kesang Ukyab  
 > Airport Council International (ACI) World  
-> Manager, Innovation and Technology
+> Manager, Innovation and Technology  
 > 800 rue du Square Victoria Montréal, Québec H4Z 1G8 Canada  
 > kukyab@aci.aero
 
